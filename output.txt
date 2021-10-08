@@ -1,0 +1,57 @@
+___
+___
+___
+Please enter a coordinate to play. (Top left is 0,0 – Bottom right is 2,2
+Enter row: 2
+Enter column: 2
+___
+___
+__X
+Please enter a coordinate to play. (Top left is 0,0 – Bottom right is 2,2
+Enter row: 1
+Enter column: 1
+___
+_O_
+__X
+Please enter a coordinate to play. (Top left is 0,0 – Bottom right is 2,2
+Enter row: 0
+Enter column: 2
+__X
+_O_
+__X
+Please enter a coordinate to play. (Top left is 0,0 – Bottom right is 2,2
+Enter row: 0
+Enter column: 1
+_OX
+_O_
+__X
+Please enter a coordinate to play. (Top left is 0,0 – Bottom right is 2,2
+Enter row: 1
+Enter column: 0
+_OX
+XO_
+__X
+Please enter a coordinate to play. (Top left is 0,0 – Bottom right is 2,2
+Enter row: 2
+Enter column: 0
+_OX
+XO_
+O_X
+Please enter a coordinate to play. (Top left is 0,0 – Bottom right is 2,2
+Enter row: 0
+Enter column: 0
+XOX
+XO_
+O_X
+Please enter a coordinate to play. (Top left is 0,0 – Bottom right is 2,2
+Enter row: 1
+Enter column: 2
+XOX
+XOO
+O_X
+Please enter a coordinate to play. (Top left is 0,0 – Bottom right is 2,2
+Enter row: 2
+Enter column: 1
+XOX
+XOO
+OXX
