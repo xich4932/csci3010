@@ -10,9 +10,9 @@
 struct temp_struct{
     int a, b;
     std::string c;
-    bool operator <(const temp_struct& comp){
-        if(this->a > comp.a) return true;
-        if(this->b > comp.b) return true;
+    temp_struct operator <(const temp_struct comp){
+        if(this->a > comp.a) return this;
+        if(this->b > comp.b) return this;
         if(this->c.compare(comp.c)) return true;
         return false;
     } 
