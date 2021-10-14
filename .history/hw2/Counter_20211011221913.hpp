@@ -16,13 +16,13 @@ template <typename T> class Counter {
         Counter(){};
         Counter(const std::vector<T> vals){
             for(int i = 0 ; i < vals.size(); i++){
-                //map_counter[vals[i]] = 1;
-                auto search = map_counter.find(vals[i]);
+                map_counter[vals[i]] = 1;
+                /* auto search = map_counter.find(vals[i]);
                 if(search != map_counter.end()){
                     search->second += 1;
                 }else{
                     map_counter.insert(std::pair<T, int>(vals[i], 1));
-                }
+                } */
             }
            
         }
@@ -162,14 +162,10 @@ template <typename T> class Counter {
 template<typename T>
 std::ostream& operator<<(std::ostream& os, const Counter<T> &b){
   // int comma = b.map_counter.size() - 1;
-  std::string str= "{";
+  std::string str= "{"
     //std::cout << "{";
     for(auto i = b.map_counter.begin(); i != b.map_counter.end(); i++){
-        std::stringstream ss;
-        std::string temp_str;
-        ss << i->first <<":"<< i->second << ",";
-        ss >> temp_str;
-        str += temp_str;
+        strin << i->first <<":"<< i->second << ",";
         //if(comma) std::cout <<",";
         //comma --;
         

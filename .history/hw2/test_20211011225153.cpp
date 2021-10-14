@@ -98,7 +98,7 @@ TEST_CASE( "overload ostream<< ", "[Counter]") {
   ss << count1;
   std::string str1;
   ss >> str1;
-  REQUIRE(str1 == "{atom:1,hello:2,vscode:1,world:1,}");
+  REQUIRE(str1 == "{hello:2,world:1,vscode:1,atom:1,}");
   
   std::vector<int> vec2= {1,2,3,4,4,4};
   Counter<int> count2(vec2);

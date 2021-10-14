@@ -16,15 +16,9 @@ template <typename T> class Counter {
         Counter(){};
         Counter(const std::vector<T> vals){
             for(int i = 0 ; i < vals.size(); i++){
-                //map_counter[vals[i]] = 1;
-                auto search = map_counter.find(vals[i]);
-                if(search != map_counter.end()){
-                    search->second += 1;
-                }else{
-                    map_counter.insert(std::pair<T, int>(vals[i], 1));
-                }
+                
             }
-           
+           auto search = map_counter.find()
         }
          T MostCommon(){return map_counter.begin()->first;};
          std::vector<T> MostCommon(int n){
@@ -93,7 +87,7 @@ template <typename T> class Counter {
             if(ans != map_counter.end()){
                 ans->second += 1;
             }else{
-                map_counter.insert(std::pair<T,int>(key, 1));
+                ;
             }
         }
         void Increment(T key, int n){
@@ -101,7 +95,7 @@ template <typename T> class Counter {
             if(ans != map_counter.end()){
                 ans->second += n;
             }else{
-                map_counter.insert(std::pair<T,int>(key, n));
+                ;
             }
         }
         void Decrement(T key){
@@ -115,12 +109,7 @@ template <typename T> class Counter {
         void Decrement(T key, int n){
             auto ans = map_counter.find(key);
             if(ans != map_counter.end()){
-                if(n > ans->second){
-                    ans->second = 0;
-                }else{
-                    ans->second -= n;
-                }
-                
+                ans->second -= n;
             }else{
                 ;
             }
@@ -161,21 +150,15 @@ template <typename T> class Counter {
 
 template<typename T>
 std::ostream& operator<<(std::ostream& os, const Counter<T> &b){
-  // int comma = b.map_counter.size() - 1;
-  std::string str= "{";
-    //std::cout << "{";
+   int comma = b.map_counter.size() - 1;
+    std::cout << "{";
     for(auto i = b.map_counter.begin(); i != b.map_counter.end(); i++){
-        std::stringstream ss;
-        std::string temp_str;
-        ss << i->first <<":"<< i->second << ",";
-        ss >> temp_str;
-        str += temp_str;
-        //if(comma) std::cout <<",";
-        //comma --;
+        std::cout << i->first <<": "<< i->second;
+        if(comma) std::cout <<", ";
+        comma --;
         
     }
-    str += "}\n";
-    os << str;
+    std::cout << "}";
     return os;
 }
 

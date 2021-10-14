@@ -51,7 +51,9 @@ TEST_CASE ( "count, count by key work fine", "[Counter]") {
   
   std::vector<int> vec2= {1,2,3,4,4,4};
   Counter<int> count2(vec2);
-
+  std::vector<int> values_answer2 = {1,1,1,3};
+  std::set<int> key_answer2 = {1,2,3,4};
+//  REQUIRE(count2.Count() == vec2.size());
   REQUIRE(count2.Count(4) == 3);
   REQUIRE(count2.Count() == vec2.size());
 }
@@ -60,50 +62,18 @@ TEST_CASE ( "count, count by key work fine", "[Counter]") {
 TEST_CASE( "Increment 1 and Increment by n work fine", "[Counter]") {
  std::vector<std::string> vec1= {"hello", "world", "vscode", "atom", "hello"};
   Counter<std::string> count1(vec1);
-  count1.Increment("atom");
-  REQUIRE(count1.Count("atom") == 2);
-  count1.Increment("atom" ,2);
-  REQUIRE(count1.Count("atom") == 4);
+  std::vector<int> values_answer1 = {1,2,1,1};
+  std::set<std::string> key_answer1 = {"hello", "world", "vscode", "atom"};
+  REQUIRE(count1.Count() == vec1.size());
+  REQUIRE(count1.Values() == values_answer1);
+  REQUIRE(count1.Keys() == key_answer1);
   
   std::vector<int> vec2= {1,2,3,4,4,4};
   Counter<int> count2(vec2);
+  std::vector<int> values_answer2 = {1,1,1,3};
+  std::set<int> key_answer2 = {1,2,3,4};
+  REQUIRE(count2.Count() == vec2.size());
+  REQUIRE(count2.Values() == values_answer2);
+  REQUIRE(count2.Keys() == key_answer2);
 
-  count2.Increment(1);
-  REQUIRE(count2.Count(1) == 2);
-  count2.Increment(3,2);
-  REQUIRE(count2.Count(3) == 3);
-}
-
-TEST_CASE( "Decrement 1 and Decrement by n work fine", "[Counter]") {
- std::vector<std::string> vec1= {"hello", "world", "vscode", "atom", "hello"};
-  Counter<std::string> count1(vec1);
-  count1.Decrement("atom");
-  REQUIRE(count1.Count("atom") == 0);
-  count1.Decrement("hello" ,2);
-  REQUIRE(count1.Count("hello") == 0);
-  
-  std::vector<int> vec2= {1,2,3,4,4,4};
-  Counter<int> count2(vec2);
-
-  count2.Decrement(4);
-  REQUIRE(count2.Count(4) == 2);
-  count2.Decrement(4,2);
-  REQUIRE(count2.Count(4) == 0);
-}
-
-TEST_CASE( "overload ostream<< ", "[Counter]") {
- std::vector<std::string> vec1= {"hello", "world", "vscode", "atom", "hello"};
-  Counter<std::string> count1(vec1);
-  std::stringstream ss;
-  ss << count1;
-  std::string str1;
-  ss >> str1;
-  REQUIRE(str1 == "{atom:1,hello:2,vscode:1,world:1,}");
-  
-  std::vector<int> vec2= {1,2,3,4,4,4};
-  Counter<int> count2(vec2);
-  ss << count2;
-  std::string str2;
-  ss >> str2;
-  REQUIRE(str2 == "{1:1,2:1,3:1,4:3,}");
 }

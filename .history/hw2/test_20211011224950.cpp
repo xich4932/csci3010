@@ -94,16 +94,16 @@ TEST_CASE( "Decrement 1 and Decrement by n work fine", "[Counter]") {
 TEST_CASE( "overload ostream<< ", "[Counter]") {
  std::vector<std::string> vec1= {"hello", "world", "vscode", "atom", "hello"};
   Counter<std::string> count1(vec1);
-  std::stringstream ss;
+  stringstream ss;
   ss << count1;
-  std::string str1;
+  std::string = str1;
   ss >> str1;
-  REQUIRE(str1 == "{atom:1,hello:2,vscode:1,world:1,}");
+  REQUIRE(str1 == "{hello:2,world:1,vscode:1,atom:1,}\n");
   
   std::vector<int> vec2= {1,2,3,4,4,4};
   Counter<int> count2(vec2);
   ss << count2;
-  std::string str2;
+  std::string = str2;
   ss >> str2;
-  REQUIRE(str2 == "{1:1,2:1,3:1,4:3,}");
+  REQUIRE(str2 == "{1:1,2:1,3:1,4:3,}\n");
 }

@@ -16,13 +16,13 @@ template <typename T> class Counter {
         Counter(){};
         Counter(const std::vector<T> vals){
             for(int i = 0 ; i < vals.size(); i++){
-                //map_counter[vals[i]] = 1;
-                auto search = map_counter.find(vals[i]);
+                map_counter[vals[i]] = 1;
+                /* auto search = map_counter.find(vals[i]);
                 if(search != map_counter.end()){
                     search->second += 1;
                 }else{
                     map_counter.insert(std::pair<T, int>(vals[i], 1));
-                }
+                } */
             }
            
         }
