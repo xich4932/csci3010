@@ -21,7 +21,7 @@ square miles: 18
 
 -----------------
 1: Spongebob [Party: one]
-2: Patrick [Party: two] 
+2: Patrick [Party: two]
 
 
 Which candidate is campaigning (id) (0 to stop) ? 1

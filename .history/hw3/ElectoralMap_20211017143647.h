@@ -57,6 +57,7 @@ class Election{
         static std::vector<int> party_one_active;
         static std::vector<int> party_two_active;
         static std::vector<int> party_three_active;
+        static std::vector<std::vector<int>> stored_idx_each;
         static int active_party[3];
     private:
         std::vector<Candidate> candidate_;
@@ -65,7 +66,7 @@ class Election{
 class RepresentativeELection : public Election{
     public:
         RepresentativeELection();
-        void voting();
+        int counting();
     private:
         party party_representative;
     

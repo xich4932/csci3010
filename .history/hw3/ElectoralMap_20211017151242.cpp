@@ -205,7 +205,8 @@ void Election::voting(){
     }
 }
 
-void RepresentativeELection::voting(){
+void Representative::voting(){
     
 }
+
 

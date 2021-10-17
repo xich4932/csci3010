@@ -17,7 +17,7 @@ int Election::ids = 0;
 std::vector<int> Election::party_one_active = {};
 std::vector<int> Election::party_two_active = {};
 std::vector<int> Election::party_three_active = {};
-//std::vector<int> Election::stored_idx_each;
+std::vector<int> Election::stored_idx_each = ;
 int Candidate::party_one_candidate = 0;
 int Candidate::party_two_candidate = 0;
 int Candidate::party_three_candidate = 0;
@@ -141,7 +141,7 @@ void Election::register_candidate(){
                 continue;
             }
             if(choice == "n") break;
-            //continue; //when user input other choice, keep asking
+            continue; //when user input other choice, keep asking
         }
     }
 }
@@ -175,13 +175,12 @@ void Election::voting(){
     sum_each_party.insert(std::pair<party, int> (party::one, 0));
     sum_each_party.insert(std::pair<party, int> (party::two, 0));
     sum_each_party.insert(std::pair<party, int> (party::three,0));
-    std::vector<std::vector<int>> store_id_each = {party_one_active, party_two_active, party_three_active};
     ElectoralMap vote_map = ElectoralMap::getInstance();
     std::map<int, District> vote_district = vote_map.get_map();
     for(int d = 0; d < num_district; d++){
         for(enum party party_name = party::one; party_name <= party::none; party_name = (party)(party_name+1)){
             if(active_party[party_name]){
-                int get_voted = rand()%store_id_each[party_name].size();
+                int get_voted = rand()%party_one_active.size();
                 candidate_[party_one_active[get_voted]].plus_vote(vote_district[d].get_constituent(party_name));
                 //sum_each_party[party_name] += vote_district[d].get_constituent(party_name);
             }else if(party_name == party::none){
@@ -189,23 +188,15 @@ void Election::voting(){
                 //if none constitutent is 9, should i count them as one or do random choice for each person
                 if(party_name == party::none){ //the majority constituent is still none
                     ;
-                }else if(!active_party[none_cantitutent] || (!active_party[party_name] && party_name != party::none)){ // when the majority constituent has no candidate
-                    int sum = 0;
-                    for(int i = 0; i < 3; i++) sum += active_party[i];
-                    int get_voted = rand()%sum;
-                    candidate_[get_voted].plus_vote(vote_district[d].get_constituent(party_name));
+                }else if(!active_party[none_cantitutent]){ // when the majority constituent has no candidate
+                    
+                }else{
+
                 }
-            }else{
-                int sum = 0;
-                for(int i = 0; i < 3; i++) sum += active_party[i];
-                int get_voted = rand()%sum;
-                candidate_[get_voted].plus_vote(vote_district[d].get_constituent(party_name));
             }
         }
     }
-}
-
-void RepresentativeELection::voting(){
+    
     
 }
 

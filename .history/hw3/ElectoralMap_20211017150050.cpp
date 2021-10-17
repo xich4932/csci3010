@@ -194,18 +194,11 @@ void Election::voting(){
                     for(int i = 0; i < 3; i++) sum += active_party[i];
                     int get_voted = rand()%sum;
                     candidate_[get_voted].plus_vote(vote_district[d].get_constituent(party_name));
+                }else{
+
                 }
-            }else{
-                int sum = 0;
-                for(int i = 0; i < 3; i++) sum += active_party[i];
-                int get_voted = rand()%sum;
-                candidate_[get_voted].plus_vote(vote_district[d].get_constituent(party_name));
             }
         }
     }
-}
-
-void RepresentativeELection::voting(){
-    
 }
 

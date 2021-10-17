@@ -54,9 +54,9 @@ class Election{
         Candidate getCandidate(int );
         std::vector<Candidate> get_all_candidate();
         static int ids;
-        static std::vector<int> party_one_active;
-        static std::vector<int> party_two_active;
-        static std::vector<int> party_three_active;
+        static int party_one_active;
+        static int party_two_active;
+        static int party_three_active;
         static int active_party[3];
     private:
         std::vector<Candidate> candidate_;
@@ -65,7 +65,7 @@ class Election{
 class RepresentativeELection : public Election{
     public:
         RepresentativeELection();
-        void voting();
+        int counting();
     private:
         party party_representative;
     

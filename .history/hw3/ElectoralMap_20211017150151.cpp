@@ -205,7 +205,3 @@ void Election::voting(){
     }
 }
 
-void RepresentativeELection::voting(){
-    
-}
-

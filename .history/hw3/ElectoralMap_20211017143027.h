@@ -65,7 +65,7 @@ class Election{
 class RepresentativeELection : public Election{
     public:
         RepresentativeELection();
-        void voting();
+        int counting();
     private:
         party party_representative;
     

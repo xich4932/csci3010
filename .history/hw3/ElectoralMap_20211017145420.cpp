@@ -189,23 +189,15 @@ void Election::voting(){
                 //if none constitutent is 9, should i count them as one or do random choice for each person
                 if(party_name == party::none){ //the majority constituent is still none
                     ;
-                }else if(!active_party[none_cantitutent] || (!active_party[party_name] && party_name != party::none)){ // when the majority constituent has no candidate
-                    int sum = 0;
-                    for(int i = 0; i < 3; i++) sum += active_party[i];
-                    int get_voted = rand()%sum;
-                    candidate_[get_voted].plus_vote(vote_district[d].get_constituent(party_name));
+                }else if(!active_party[none_cantitutent]){ // when the majority constituent has no candidate
+                    
+                }else{
+
                 }
-            }else{
-                int sum = 0;
-                for(int i = 0; i < 3; i++) sum += active_party[i];
-                int get_voted = rand()%sum;
-                candidate_[get_voted].plus_vote(vote_district[d].get_constituent(party_name));
             }
         }
     }
-}
-
-void RepresentativeELection::voting(){
+    
     
 }
 
