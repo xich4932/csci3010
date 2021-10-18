@@ -48,7 +48,6 @@ class Election{
     public:
         Election();
        // void register_candidate(party, std::string);
-        bool check_win();
         void report_win();
         void voting();
         void register_candidate();

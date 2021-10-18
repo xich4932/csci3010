@@ -28,9 +28,8 @@ class Candidate{
 
 class District{
     public:
-        District();
         District(int);
-        void change_party(party,party, int);
+        void change_party(party, int);
         //void get_constituent(party);
         double get_sqaure_mile(){return square_mile;};
         int get_id() {return id;};
@@ -48,7 +47,6 @@ class Election{
     public:
         Election();
        // void register_candidate(party, std::string);
-        bool check_win();
         void report_win();
         void voting();
         void register_candidate();

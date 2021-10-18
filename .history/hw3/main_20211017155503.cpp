@@ -13,13 +13,5 @@ int main(){
     std::default_random_engine generator;
     ElectoralMap firstmap = ElectoralMap::getInstance();
     std::cout << firstmap << std::endl;
-    Election first_election;
-    
-    while (true)
-    {
-
-    }
-   
-    
     return 0;
 }

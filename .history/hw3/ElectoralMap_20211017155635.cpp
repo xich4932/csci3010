@@ -80,14 +80,6 @@ int District::get_sum_constitutent(){
 
 void District::change_party(party increase_party, party decrease_party, int num){
     //debug: assume changing number is always smaller than the actual number
-    if(num > map_party[decrease_party]){
-        map_party[increase_party] += map_party[decrease_party];
-        map_party[decrease_party] = 0;
-        
-    }else{
-        map_party[increase_party] += num;
-        map_party[decrease_party] -= num;
-    }
     
 };
 
@@ -129,10 +121,6 @@ std::ostream & operator<<(std::ostream& os, ElectoralMap print_map){
 void ask_name(std::string &name){
     std::cout << "What is their name?"<<std::endl;
     getline(std::cin, name);
-}
-
-Election::Election(){
-    register_candidate();
 }
 
 void Election::register_candidate(){

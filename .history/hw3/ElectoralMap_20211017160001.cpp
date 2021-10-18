@@ -131,10 +131,6 @@ void ask_name(std::string &name){
     getline(std::cin, name);
 }
 
-Election::Election(){
-    register_candidate();
-}
-
 void Election::register_candidate(){
     std::string choice;
     for(enum party party_name; party_name <= party::none; party_name = (party)(party_name+1)){

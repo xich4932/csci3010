@@ -78,17 +78,16 @@ int District::get_sum_constitutent(){
     return sum;
 }
 
-void District::change_party(party increase_party, party decrease_party, int num){
+void District::change_party(party cur_party, int num){
     //debug: assume changing number is always smaller than the actual number
-    if(num > map_party[decrease_party]){
-        map_party[increase_party] += map_party[decrease_party];
-        map_party[decrease_party] = 0;
-        
-    }else{
-        map_party[increase_party] += num;
-        map_party[decrease_party] -= num;
+    int sum_in_party = 0;
+    for(auto i = map_party.begin(); i != map_party.end(); i++){
+        if(i->first != party::none) sum_in_party += i->second;
     }
-    
+    double success = ((map_party[cur_party]+1)*2/sum_in_party)*(((map_party[cur_party]+1)*2)/(square_mile));
+    success = std::min(100.00, success);
+    double extra_success = success * 0.1;
+
 };
 
 ElectoralMap::ElectoralMap(){
@@ -129,10 +128,6 @@ std::ostream & operator<<(std::ostream& os, ElectoralMap print_map){
 void ask_name(std::string &name){
     std::cout << "What is their name?"<<std::endl;
     getline(std::cin, name);
-}
-
-Election::Election(){
-    register_candidate();
 }
 
 void Election::register_candidate(){

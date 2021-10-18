@@ -40,10 +40,6 @@ int Candidate::get_ids(){
     return id_candidate;
 }
 
-District::District(){
-    ;
-}
-
 District::District(int given_id){
   // std::default_random_engine engine;
   //  std::uniform_int_distribution<unsigned> range_random(0,9);
@@ -78,17 +74,16 @@ int District::get_sum_constitutent(){
     return sum;
 }
 
-void District::change_party(party increase_party, party decrease_party, int num){
+void District::change_party(party cur_party, int num){
     //debug: assume changing number is always smaller than the actual number
-    if(num > map_party[decrease_party]){
-        map_party[increase_party] += map_party[decrease_party];
-        map_party[decrease_party] = 0;
-        
-    }else{
-        map_party[increase_party] += num;
-        map_party[decrease_party] -= num;
+    int sum_in_party = 0;
+    for(auto i = map_party.begin(); i != map_party.end(); i++){
+        if(i->first != party::none) sum_in_party += i->second;
     }
-    
+    double success = ((map_party[cur_party]+1)*2/sum_in_party)*(((map_party[cur_party]+1)*2)/(square_mile));
+    success = std::min(100.00, success);
+    double extra_success = success * 0.1;
+
 };
 
 ElectoralMap::ElectoralMap(){
@@ -129,10 +124,6 @@ std::ostream & operator<<(std::ostream& os, ElectoralMap print_map){
 void ask_name(std::string &name){
     std::cout << "What is their name?"<<std::endl;
     getline(std::cin, name);
-}
-
-Election::Election(){
-    register_candidate();
 }
 
 void Election::register_candidate(){
@@ -199,10 +190,10 @@ void Election::voting(){
         for(enum party party_name = party::one; party_name <= party::none; party_name = (party)(party_name+1)){
             if(active_party[party_name]){
                 int get_voted = rand()%store_id_each[party_name].size();
-                candidate_[party_one_active[get_voted]].plus_vote(vote_district[d+1].get_constituent(party_name));
+                candidate_[party_one_active[get_voted]].plus_vote(vote_district[d].get_constituent(party_name));
                 //sum_each_party[party_name] += vote_district[d].get_constituent(party_name);
             }else if(party_name == party::none){
-                party none_cantitutent = vote_district[d+1].get_max();
+                party none_cantitutent = vote_district[d].get_max();
                 //if none constitutent is 9, should i count them as one or do random choice for each person
                 if(party_name == party::none){ //the majority constituent is still none
                     ;
@@ -210,20 +201,20 @@ void Election::voting(){
                     int sum = 0;
                     for(int i = 0; i < 3; i++) sum += active_party[i];
                     int get_voted = rand()%sum;
-                    candidate_[get_voted].plus_vote(vote_district[d+1].get_constituent(party_name));
+                    candidate_[get_voted].plus_vote(vote_district[d].get_constituent(party_name));
                 }
             }else{
                 int sum = 0;
                 for(int i = 0; i < 3; i++) sum += active_party[i];
                 int get_voted = rand()%sum;
-                candidate_[get_voted].plus_vote(vote_district[d+1].get_constituent(party_name));
+                candidate_[get_voted].plus_vote(vote_district[d].get_constituent(party_name));
             }
         }
     }
 }
 
-/* void RepresentativeELection::voting(){
-    double sum_party_each[3] = {0,0,0};
+void RepresentativeELection::voting(){
+    int sum_party_each[3] = {0,0,0};
     ElectoralMap vote_map = ElectoralMap::getInstance();
     std::map<int, District> vote_district = vote_map.get_map();
     int all_constituent = 0;
@@ -232,9 +223,8 @@ void Election::voting(){
     }
     for(int i = 0; i < num_district; i++){
         for(enum party temp = party::one; temp <= party::none; temp = (party)(temp+1)){
-            sum_party_each[temp] = vote_district[i]
+            
         }
     }
 }
 
- */
