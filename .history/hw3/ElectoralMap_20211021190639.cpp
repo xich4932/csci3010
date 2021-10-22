@@ -280,15 +280,15 @@ void Election::voting(){
     ElectoralMap vote_map = ElectoralMap::getInstance();
     std::map<int, District*> vote_district = ElectoralMap::getInstance().get_map();
     int turn_candidate = 0;
-    for(int d = 0; d < num_district; d++){
+    for(int d = 1; d < num_district; d++){
         std::cout << "d : "<< d << std::endl;
         for(enum party party_name = one; party_name < none; party_name = (party)(party_name+1)){
             if(party_name == party::none) continue;
             //std::cout << active_party[party_name] << std::endl;
-            if(active_party[ party_name]){
+            if(active_party[(party_name]){
                 int get_voted = rand()%store_id_each[party_name].size();
                 std::cout << "get_voted " << get_voted << std::endl;
-                candidate_[party_one_active[get_voted]]->plus_vote(*vote_district[d+1] , vote_district[d+1]->get_constituent(party_name));
+                candidate_[party_one_active[get_voted]]->plus_vote(*vote_district[d] , vote_district[d+1]->get_constituent(party_name));
                 
                 //sum_each_party[party_name] += vote_district[d].get_constituent(party_name);
             }else if(party_name == party::none){
@@ -301,13 +301,13 @@ void Election::voting(){
                     int sum = 0;
                     for(int i = 0; i < 3; i++) sum += active_party[i];
                     int get_voted = rand()%sum;
-                    candidate_[get_voted]->plus_vote(*vote_district[d+1] , vote_district[d+1]->get_constituent(party_name));
+                    candidate_[get_voted]->plus_vote(*vote_district[d] , vote_district[d+1]->get_constituent(party_name));
                 }
             }else{
                 int sum = 0;
                 for(int i = 0; i < 3; i++) sum += active_party[i];
                 int get_voted = rand()%sum;
-                candidate_[get_voted]->plus_vote(*vote_district[d+1] , vote_district[d+1]->get_constituent(party_name));
+                candidate_[get_voted]->plus_vote(*vote_district[d] , vote_district[d+1]->get_constituent(party_name));
             }
         }
     }

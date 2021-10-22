@@ -285,7 +285,7 @@ void Election::voting(){
         for(enum party party_name = one; party_name < none; party_name = (party)(party_name+1)){
             if(party_name == party::none) continue;
             //std::cout << active_party[party_name] << std::endl;
-            if(active_party[ party_name]){
+            if(active_party[party_name]){
                 int get_voted = rand()%store_id_each[party_name].size();
                 std::cout << "get_voted " << get_voted << std::endl;
                 candidate_[party_one_active[get_voted]]->plus_vote(*vote_district[d+1] , vote_district[d+1]->get_constituent(party_name));
