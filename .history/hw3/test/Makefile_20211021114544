@@ -1,0 +1,13 @@
+CXX = g++
+CXXFLAGS	= -std=c++17 -Wall
+
+all: mainn
+
+clean:
+	rm main #ElectoralMap.o
+
+test: test.cpp  
+	$(CXX) $(CXXFLAGS) main.cpp ElectoralMap.o -o main
+
+ElectoralMap.o: ElectoralMap.cpp
+	$(CXX) $(CXXFLAGS) -c ElectoralMap.cpp
