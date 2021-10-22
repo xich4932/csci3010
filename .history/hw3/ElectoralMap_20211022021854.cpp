@@ -419,7 +419,7 @@ RepresentativeELection::RepresentativeELection(){
                 std::string candidate_name;
                 ask_name(candidate_name);
                 Candidate *temp = new Candidate(ids+1, party_name, candidate_name);
-                rep_candidate_.insert(std::pair<int, Candidate*>(ids + 1, temp));
+                candidate_.insert(std::pair<int, Candidate*>(ids + 1, temp));
                 ids ++;
                 if(party_name == 0){
                     party_one_active.push_back(ids);
@@ -438,7 +438,7 @@ RepresentativeELection::RepresentativeELection(){
             //continue; //when user input other choice, keep asking
         }
     }
-    for(auto i = rep_candidate_.begin(); i != rep_candidate_.end(); i ++){
+    for(auto i = candidate_.begin(); i != candidate_.end(); i ++){
         std::cout << i->second->get_name() <<" "<< i->second->get_ids() << std::endl;
     }
 }
@@ -507,9 +507,9 @@ void RepresentativeELection::report_win(){
     std::map<int, District*> print_map = ElectoralMap::getInstance().get_map();
    
 
-    auto find_max = rep_candidate_.begin();
-    int max = rep_candidate_.begin()->second->get_total_vote();
-    for(auto i = rep_candidate_.begin(); i != rep_candidate_.end(); i++){
+    auto find_max = candidate_.begin();
+    int max = candidate_.begin()->second->get_total_vote();
+    for(auto i = candidate_.begin(); i != candidate_.end(); i++){
         std::map<int,int> print_ = i->second->get_all_votes();
         for(auto p = print_.begin(); p != print_.end(); p++){
             std::cout << "District" << p->first << std::endl;

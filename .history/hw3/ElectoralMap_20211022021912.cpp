@@ -419,7 +419,7 @@ RepresentativeELection::RepresentativeELection(){
                 std::string candidate_name;
                 ask_name(candidate_name);
                 Candidate *temp = new Candidate(ids+1, party_name, candidate_name);
-                rep_candidate_.insert(std::pair<int, Candidate*>(ids + 1, temp));
+                candidate_.insert(std::pair<int, Candidate*>(ids + 1, temp));
                 ids ++;
                 if(party_name == 0){
                     party_one_active.push_back(ids);
@@ -438,7 +438,7 @@ RepresentativeELection::RepresentativeELection(){
             //continue; //when user input other choice, keep asking
         }
     }
-    for(auto i = rep_candidate_.begin(); i != rep_candidate_.end(); i ++){
+    for(auto i = candidate_.begin(); i != candidate_.end(); i ++){
         std::cout << i->second->get_name() <<" "<< i->second->get_ids() << std::endl;
     }
 }

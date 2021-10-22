@@ -77,7 +77,7 @@ class Election{
         virtual int where_campaigning();
         bool check_end();
         virtual void print_each_Vote();
-        //virtual void election_process();
+        virtual void election_process();
         virtual void test(){std::cout <<"from base"<<std::endl;};
         void converting(District*, Candidate* );
         virtual Candidate* get_candidate(int );

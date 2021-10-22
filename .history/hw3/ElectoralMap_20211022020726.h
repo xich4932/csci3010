@@ -70,17 +70,17 @@ class Election{
         Election();
         Election(std::string);
         bool check_win();
-        virtual void report_win();
-        virtual void voting();
+        void report_win();
+        void voting();
         void register_candidate(party, std::string);
-        virtual Candidate* who_campaigning();
-        virtual int where_campaigning();
+        Candidate* who_campaigning();
+        int where_campaigning();
         bool check_end();
-        virtual void print_each_Vote();
-        //virtual void election_process();
+        void print_each_Vote();
+        void election_process();
         virtual void test(){std::cout <<"from base"<<std::endl;};
         void converting(District*, Candidate* );
-        virtual Candidate* get_candidate(int );
+        Candidate* get_candidate(int );
         static int ids;
         static std::vector<int> party_one_active;
         static std::vector<int> party_two_active;
@@ -99,10 +99,9 @@ class RepresentativeELection : public Election{
         void voting();
         void test(){std::cout <<"from derivative"<<std::endl;};
         void report_win();
-        Candidate* who_campaigning();
     private:
         std::vector<int> vote_per_district;
-        std::map<int, Candidate*> rep_candidate_ ;
+        std::map<int, Candidate*> candidate_ ;
     
 };
 
@@ -120,5 +119,7 @@ class ElectoralMap{
         ElectoralMap();
         std::map<int, District*> map;
 };
+
+
 
 #endif

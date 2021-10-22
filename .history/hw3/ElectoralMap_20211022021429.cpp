@@ -419,7 +419,7 @@ RepresentativeELection::RepresentativeELection(){
                 std::string candidate_name;
                 ask_name(candidate_name);
                 Candidate *temp = new Candidate(ids+1, party_name, candidate_name);
-                rep_candidate_.insert(std::pair<int, Candidate*>(ids + 1, temp));
+                candidate_.insert(std::pair<int, Candidate*>(ids + 1, temp));
                 ids ++;
                 if(party_name == 0){
                     party_one_active.push_back(ids);
@@ -438,7 +438,7 @@ RepresentativeELection::RepresentativeELection(){
             //continue; //when user input other choice, keep asking
         }
     }
-    for(auto i = rep_candidate_.begin(); i != rep_candidate_.end(); i ++){
+    for(auto i = candidate_.begin(); i != candidate_.end(); i ++){
         std::cout << i->second->get_name() <<" "<< i->second->get_ids() << std::endl;
     }
 }
@@ -474,21 +474,23 @@ void Election::report_win(){
 }
 
 
-Candidate* RepresentativeELection::who_campaigning(){
-    std::string choice;
+Candidate* RepresentativeElection::ask_name(){
+     char choice;
     while ((1))
     {
         std::cout << "Which candidate is campaigning (id) (0 to stop) ?" <<std::endl;
-        getline(std::cin, choice);
-        if(choice == "0") return NULL;
-        if(std::stoi(choice) <= ids && rep_candidate_.find(std::stoi(choice)) == rep_candidate_.end()){
+        std::cin.get(choice);
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        if(choice == '0') return NULL;
+        if(!std::isdigit(choice) && (int)(choice) <= ids && candidate_.find((int)(choice)) == candidate_.end()){
             std::cout << "index not availble" <<std::endl;
             continue;
         } 
         break; //jump out of loop if id is availble
     }
-   // std::cout << candidate_[(int)(choice)]->get_name() << std::endl;
-    return rep_candidate_[std::stoi(choice)];
+    std::cout << candidate_[(int)(choice)]->get_name() << std::endl;
+    return candidate_[(int)(choice)];
 }
 
     
@@ -499,7 +501,7 @@ void RepresentativeELection::voting(){
     for(auto each_district = temp_map.begin(); each_district != temp_map.end(); each_district++){
         enum party max_party = each_district->second->get_max_party();
         int this_rand = rand() % store_all[max_party].size();
-        rep_candidate_[store_all[max_party][this_rand]]->plus_vote(each_district->second->get_id(), vote_per_district[each_district->second->get_id()]);
+        candidate_[store_all[max_party][this_rand]]->plus_vote(each_district->second->get_id(), vote_per_district[each_district->second->get_id()]);
     }
 }
 
@@ -507,9 +509,9 @@ void RepresentativeELection::report_win(){
     std::map<int, District*> print_map = ElectoralMap::getInstance().get_map();
    
 
-    auto find_max = rep_candidate_.begin();
-    int max = rep_candidate_.begin()->second->get_total_vote();
-    for(auto i = rep_candidate_.begin(); i != rep_candidate_.end(); i++){
+    auto find_max = candidate_.begin();
+    int max = candidate_.begin()->second->get_total_vote();
+    for(auto i = candidate_.begin(); i != candidate_.end(); i++){
         std::map<int,int> print_ = i->second->get_all_votes();
         for(auto p = print_.begin(); p != print_.end(); p++){
             std::cout << "District" << p->first << std::endl;

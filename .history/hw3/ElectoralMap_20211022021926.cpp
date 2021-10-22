@@ -419,7 +419,7 @@ RepresentativeELection::RepresentativeELection(){
                 std::string candidate_name;
                 ask_name(candidate_name);
                 Candidate *temp = new Candidate(ids+1, party_name, candidate_name);
-                rep_candidate_.insert(std::pair<int, Candidate*>(ids + 1, temp));
+                candidate_.insert(std::pair<int, Candidate*>(ids + 1, temp));
                 ids ++;
                 if(party_name == 0){
                     party_one_active.push_back(ids);
